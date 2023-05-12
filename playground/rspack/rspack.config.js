@@ -16,7 +16,7 @@ module.exports = {
       },
     ],
   },
-  plugins: [rspackPlugin()],
+  plugins: [rspackPlugin({ enabled: true })],
   module: {
     rules: [
       {

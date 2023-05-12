@@ -4,6 +4,7 @@ import { compile } from "./compiler";
 import { createServer } from "./server";
 import { DEFAULT_OPTIONS } from "./constants";
 import getPort from "get-port";
+import { normalizePath } from "../utils";
 
 export default createUnplugin<Options>((ops = DEFAULT_OPTIONS) => {
   if (typeof window === undefined) return { name: "nplugin-react-inspector" };
@@ -27,11 +28,11 @@ export default createUnplugin<Options>((ops = DEFAULT_OPTIONS) => {
     name: "unplugin-react-inspector",
     enforce: "pre",
     transform(code, id) {
-      console.log("transform", id);
-
-      const isJsx = id.endsWith(".jsx") || id.endsWith(".tsx");
+      // normalize path
+      const filePath = normalizePath(id);
+      const isJsx = filePath.endsWith(".jsx") || filePath.endsWith(".tsx");
       if (isJsx && options.enabled)
-        return compile(code, id, {
+        return compile(code, filePath, {
           port: defaultPort,
           enabled: options.enabled,
           injectClientEntryFile: options.injectClientEntryFile,

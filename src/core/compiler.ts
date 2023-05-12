@@ -9,13 +9,15 @@ import { isArray } from "../utils";
 
 export const injectClient = ({
   parseCode,
-  id,
+  filePath,
   port,
   enabled,
   injectClientEntryFile,
 }: InjectClientOptions) => {
   if (isArray(injectClientEntryFile)) {
-    const flag = (injectClientEntryFile as Array<string>).some((entryFile) => id!.match(entryFile));
+    const flag = (injectClientEntryFile as Array<string>).some((entryFile) =>
+      filePath!.match(entryFile)
+    );
     if (flag) {
       const options = {
         dataKey: KEY_DATA,
@@ -28,12 +30,15 @@ export const injectClient = ({
         )});\n`
       );
     }
-  } else if (id!.match(injectClientEntryFile as string | RegExp)) {
+  } else if (filePath!.match(injectClientEntryFile as string | RegExp)) {
     const options = {
       dataKey: KEY_DATA,
       port,
       enabled,
     };
+
+    console.log("injectClientEntryFile", options);
+
     parseCode.prepend(
       `import { createClient } from "unplugin-react-inspector/client";\n createClient(${JSON.stringify(
         options
@@ -45,10 +50,10 @@ export const injectClient = ({
 
 export const injectInspectorInDom = (
   code: string,
-  id: string,
+  filePath: string,
   magicCode: MagicString
 ): Promise<string> => {
-  const relativePath = path.relative(process.cwd(), id as string);
+  const relativePath = path.relative(process.cwd(), filePath as string);
   return new Promise((resolve) => {
     const ast = babelParse(code, {
       babelrc: false,
@@ -80,20 +85,27 @@ export const injectInspectorInDom = (
   });
 };
 
-export const filterInspectorOverlay = (id: string) => id.match("InspectorOverlay.jsx");
+export const filterInspectorOverlay = (filePath: string) => filePath.match("InspectorOverlay.jsx");
 
 export async function compile(
   code: string,
-  id: string,
+  filePath: string,
   { port, enabled, injectClientEntryFile }: CompileOptions
 ) {
-  if (filterInspectorOverlay(id!)) return code;
+  if (filterInspectorOverlay(filePath!)) return code;
+  console.log("compile", filePath, injectClientEntryFile);
 
   let magicCode = new MagicString(code);
 
-  magicCode = injectClient({ parseCode: magicCode, id, port, enabled, injectClientEntryFile });
+  magicCode = injectClient({
+    parseCode: magicCode,
+    filePath,
+    port,
+    enabled,
+    injectClientEntryFile,
+  });
 
-  const result = await injectInspectorInDom(code, id!, magicCode);
+  const result = await injectInspectorInDom(code, filePath!, magicCode);
 
   return result;
 }

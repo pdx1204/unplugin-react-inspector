@@ -26,5 +26,5 @@ export interface CompileOptions {
 
 export type InjectClientOptions = Omit<CompileOptions, "code"> & {
   parseCode: MagicString;
-  id: string;
+  filePath: string;
 };
