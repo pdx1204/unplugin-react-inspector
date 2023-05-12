@@ -11,6 +11,7 @@ export const injectClient = ({
   parseCode,
   id,
   port,
+  enabled,
   injectClientEntryFile,
 }: InjectClientOptions) => {
   if (isArray(injectClientEntryFile)) {
@@ -19,6 +20,7 @@ export const injectClient = ({
       const options = {
         dataKey: KEY_DATA,
         port,
+        enabled,
       };
       parseCode.prepend(
         `import { createClient } from "unplugin-react-inspector/client";\n createClient(${JSON.stringify(
@@ -30,6 +32,7 @@ export const injectClient = ({
     const options = {
       dataKey: KEY_DATA,
       port,
+      enabled,
     };
     parseCode.prepend(
       `import { createClient } from "unplugin-react-inspector/client";\n createClient(${JSON.stringify(
@@ -79,12 +82,16 @@ export const injectInspectorInDom = (
 
 export const filterInspectorOverlay = (id: string) => id.match("InspectorOverlay.jsx");
 
-export async function compile({ code, id, port, injectClientEntryFile }: CompileOptions) {
+export async function compile(
+  code: string,
+  id: string,
+  { port, enabled, injectClientEntryFile }: CompileOptions
+) {
   if (filterInspectorOverlay(id!)) return code;
 
   let magicCode = new MagicString(code);
 
-  magicCode = injectClient({ parseCode: magicCode, id, port, injectClientEntryFile });
+  magicCode = injectClient({ parseCode: magicCode, id, port, enabled, injectClientEntryFile });
 
   const result = await injectInspectorInDom(code, id!, magicCode);
 

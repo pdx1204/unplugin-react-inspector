@@ -17,8 +17,8 @@ export default createUnplugin<Options>((ops = DEFAULT_OPTIONS) => {
     getPort().then((port) => {
       console.log("port", port);
 
-      // initialize server
       defaultPort = port;
+      // initialize server
       createServer(port);
     });
   }
@@ -31,10 +31,9 @@ export default createUnplugin<Options>((ops = DEFAULT_OPTIONS) => {
 
       const isJsx = id.endsWith(".jsx") || id.endsWith(".tsx");
       if (isJsx && options.enabled)
-        return compile({
-          code,
-          id,
+        return compile(code, id, {
           port: defaultPort,
+          enabled: options.enabled,
           injectClientEntryFile: options.injectClientEntryFile,
         });
       return code;

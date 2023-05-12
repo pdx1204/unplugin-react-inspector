@@ -19,12 +19,12 @@ export interface Options {
 }
 
 export interface CompileOptions {
-  code: string;
-  id?: string;
   port?: number;
+  enabled?: boolean;
   injectClientEntryFile?: string | string[] | RegExp;
 }
 
 export type InjectClientOptions = Omit<CompileOptions, "code"> & {
   parseCode: MagicString;
+  id: string;
 };
