@@ -1,3 +1,21 @@
+body {
+  cursor: pointer;
+}
 .inspector-overlay {
+  border-radius: 5px;
+  padding: 5px 10px;
   position: fixed;
+  background-color: rgba(255, 0, 0, 0.1);
+  transition: all 0.8s;
+}
+
+.inspector-info {
+  border-radius: 5px;
+  padding: 5px 10px;
+  position: absolute;
+  background-color: #fff;
+  font-size: 12px;
+  color: #000;
+  left: 50%;
+  transform: translate(-50%, -100%);
 }

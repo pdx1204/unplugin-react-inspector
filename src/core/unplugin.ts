@@ -3,12 +3,25 @@ import { createUnplugin } from "unplugin";
 import { compile } from "./compiler";
 import { createServer } from "./server";
 import { DEFAULT_OPTIONS } from "./constants";
+import getPort from "get-port";
 
-export default createUnplugin<Options>((options = DEFAULT_OPTIONS) => {
+export default createUnplugin<Options>((ops = DEFAULT_OPTIONS) => {
+  if (typeof window === undefined) return { name: "nplugin-react-inspector" };
   if (process.env.NODE_ENV === "production") return { name: "unplugin-react-inspector" };
+  let defaultPort: number;
 
-  // initialize server
-  createServer(options.port as number);
+  const options = { ...DEFAULT_OPTIONS, ...ops };
+
+  if (options.enabled) {
+    // get port
+    getPort().then((port) => {
+      console.log("port", port);
+
+      // initialize server
+      defaultPort = port;
+      createServer(port);
+    });
+  }
 
   return {
     name: "unplugin-react-inspector",
@@ -17,8 +30,14 @@ export default createUnplugin<Options>((options = DEFAULT_OPTIONS) => {
       console.log("transform", id);
 
       const isJsx = id.endsWith(".jsx") || id.endsWith(".tsx");
-      if (!isJsx) return code;
-      return compile({ code, id });
+      if (isJsx && options.enabled)
+        return compile({
+          code,
+          id,
+          port: defaultPort,
+          injectClientEntryFile: options.injectClientEntryFile,
+        });
+      return code;
     },
   };
 });

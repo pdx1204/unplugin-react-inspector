@@ -1,15 +1,16 @@
+import MagicString from "magic-string";
+
 export interface Options {
   /**
-   * Port number
-   * @default 3000
-   */
-  port?: number;
-
-  /**
    * Entry file path
-   * @default "src/main.{tsx, jsx}"
+   * @example
+   * "src/main.tsx"
+   * ["src/main.tsx", "src/main.jsx"],
+   * /(src\/main\.tsx)|(src\/main\.jsx)/
+   * @default "src/main.tsx"
    */
-  entryFile?: string;
+  injectClientEntryFile?: string | string[] | RegExp;
+
   /**
    * Default enable state
    * @default false
@@ -20,4 +21,10 @@ export interface Options {
 export interface CompileOptions {
   code: string;
   id?: string;
+  port?: number;
+  injectClientEntryFile?: string | string[] | RegExp;
 }
+
+export type InjectClientOptions = Omit<CompileOptions, "code"> & {
+  parseCode: MagicString;
+};
