@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import connect from "connect";
 import http from "http";
 
+// @ts-ignore
 import launchMiddleware from "launch-editor-middleware";
 
 export const createServer = (port: number) => {

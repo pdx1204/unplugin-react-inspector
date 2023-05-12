@@ -2,10 +2,19 @@
   "name": "unplugin-react-inspector",
   "version": "0.0.1",
   "description": "A plugin to improve the happiness index of react development",
-  "keywords": [],
+  "keywords": [
+    "unplugin",
+    "webpack",
+    "vite",
+    "rspack",
+    "rollup",
+    "esbuild",
+    "react",
+    "react-inspector"
+  ],
   "scripts": {
-    "play:vite": "pnpm run --filter ./playground/vite dev",
-    "play:rspack": "pnpm run --filter ./playground/rspack dev",
+    "play:vite": "pnpm run build && pnpm run --filter ./playground/vite dev",
+    "play:rspack": "pnpm run build && pnpm run --filter ./playground/rspack dev",
     "dev": "rollup -c -w",
     "build": "rollup -c && tsc -p ./tsconfig.json",
     "lint": "eslint . --fix",
@@ -15,13 +24,14 @@
     "test": "jest"
   },
   "type": "module",
-  "main": "./dist/index.mjs",
-  "types": "./dist/types/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/types/types.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs",
-      "types": "./dist/types/index.d.ts"
+      "types": "./dist/types/types.d.ts"
     },
     "./client": "./src/client/index.jsx"
   },
@@ -30,7 +40,7 @@
     "src/client/*"
   ],
   "author": "Quincy Qiu",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@commitlint/cli": "^17.4.4",
     "@commitlint/config-conventional": "^17.4.4",
@@ -80,5 +90,16 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "unplugin": "^1.3.1"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qiuqfang/unplugin-react-inspector.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qiuqfang/unplugin-react-inspector/issues"
+  },
+  "homepage": "https://github.com/qiuqfang/unplugin-react-inspector#readme"
 }

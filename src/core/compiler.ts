@@ -40,7 +40,11 @@ export const injectClient = ({
   return parseCode;
 };
 
-export const injectInspectorInDom = (code: string, id: string, magicCode: MagicString) => {
+export const injectInspectorInDom = (
+  code: string,
+  id: string,
+  magicCode: MagicString
+): Promise<string> => {
   const relativePath = path.relative(process.cwd(), id as string);
   return new Promise((resolve) => {
     const ast = babelParse(code, {
@@ -84,5 +88,5 @@ export async function compile({ code, id, port, injectClientEntryFile }: Compile
 
   const result = await injectInspectorInDom(code, id!, magicCode);
 
-  return result as string;
+  return result;
 }
