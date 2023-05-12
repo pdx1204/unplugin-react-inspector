@@ -4,6 +4,12 @@ export interface Options {
    * @default 3000
    */
   port?: number;
+
+  /**
+   * Entry file path
+   * @default "src/main.{tsx, jsx}"
+   */
+  entryFile?: string;
   /**
    * Default enable state
    * @default false

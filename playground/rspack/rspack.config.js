@@ -1,4 +1,5 @@
-const { rspackPlugin } = require("../../dist/index.cjs");
+/* eslint-disable @typescript-eslint/no-var-requires */
+const { rspackPlugin } = require("unplugin-react-inspector");
 
 /**
  * @type {import('@rspack/cli').Configuration}

@@ -4,6 +4,8 @@
   "description": "A plugin to improve the happiness index of react development",
   "keywords": [],
   "scripts": {
+    "play:vite": "pnpm run --filter ./playground/vite dev",
+    "play:rspack": "pnpm run --filter ./playground/rspack dev",
     "dev": "rollup -c -w",
     "build": "rollup -c && tsc -p ./tsconfig.json",
     "lint": "eslint . --fix",
@@ -16,10 +18,17 @@
   "main": "./dist/index.mjs",
   "types": "./dist/types/index.d.ts",
   "exports": {
-    "import": "./dist/index.mjs",
-    "require": "./dist/index.cjs",
-    "types": "./dist/types/index.d.ts"
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./client": "./src/client/index.jsx"
   },
+  "files": [
+    "dist",
+    "src/client/*"
+  ],
   "author": "Quincy Qiu",
   "license": "ISC",
   "devDependencies": {
@@ -34,6 +43,8 @@
     "@types/babel__core": "^7.20.0",
     "@types/connect": "^3.4.35",
     "@types/node": "^20.1.2",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.36.0",
@@ -61,11 +72,12 @@
   },
   "dependencies": {
     "@babel/core": "^7.21.8",
-    "@babel/plugin-syntax-import-meta": "^7.10.4",
     "@babel/plugin-transform-typescript": "^7.21.3",
     "connect": "^3.7.0",
     "launch-editor-middleware": "^2.6.0",
     "magic-string": "^0.30.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "unplugin": "^1.3.1"
   }
 }

@@ -4,19 +4,22 @@ import { parse as babelParse, traverse as babelTraverse } from "@babel/core";
 import { CompileOptions } from "../types";
 import path from "path";
 
-const KEY_DATA = "data-v-inspector";
+import { KEY_DATA } from "./constants";
 
 export async function compile({ code, id }: CompileOptions) {
   const s = new MagicString(code);
+  if (id!.match(/(main\.jsx)|(main\.tsx)/)) {
+    s.prepend(
+      `import { createClient } from "unplugin-react-inspector/client";\n createClient('${KEY_DATA}');\n`
+    );
+    return s.toString();
+  }
   const relativePath = path.relative(process.cwd(), id as string);
   const result = await new Promise((resolve) => {
     const ast = babelParse(code, {
       babelrc: false,
       comments: true,
-      plugins: [
-        "@babel/plugin-syntax-import-meta",
-        ["@babel/plugin-transform-typescript", { isTSX: true, allExtensions: true }],
-      ],
+      plugins: [["@babel/plugin-transform-typescript", { isTSX: true, allExtensions: true }]],
     });
 
     babelTraverse(ast, {
