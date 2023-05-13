@@ -88,14 +88,11 @@ export const injectInspectorInDom = (
   });
 };
 
-export const filterInspectorOverlay = (filePath: string) => filePath.match("InspectorOverlay.jsx");
-
 export async function compile(
   code: string,
   filePath: string,
   { port, enabled, injectClientEntryFile }: CompileOptions
 ) {
-  if (filterInspectorOverlay(filePath!)) return code;
   console.log("compile", filePath, injectClientEntryFile);
 
   let magicCode = new MagicString(code);

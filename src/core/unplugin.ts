@@ -32,8 +32,12 @@ export default createUnplugin<Options>((ops = DEFAULT_OPTIONS) => {
 
       // normalize path
       const filePath = normalizePath(id);
+
+      // check an filter
       const isJsx = filePath.endsWith(".jsx") || filePath.endsWith(".tsx");
-      if (isJsx && options.enabled)
+      const isInspectorOverlay = filterInspectorOverlay(filePath);
+
+      if (!isInspectorOverlay && isJsx && options.enabled)
         return compile(code, filePath, {
           port: defaultPort,
           enabled: options.enabled,
@@ -43,3 +47,6 @@ export default createUnplugin<Options>((ops = DEFAULT_OPTIONS) => {
     },
   };
 });
+
+export const filterInspectorOverlay = (filePath: string) =>
+  !!filePath.match("unplugin-react-inspector/src/client") || !!filePath.match(".routes");
