@@ -28,6 +28,8 @@ export default createUnplugin<Options>((ops = DEFAULT_OPTIONS) => {
     name: "unplugin-react-inspector",
     enforce: "pre",
     transform(code, id) {
+      if (!id) return;
+
       // normalize path
       const filePath = normalizePath(id);
       const isJsx = filePath.endsWith(".jsx") || filePath.endsWith(".tsx");
