@@ -13,6 +13,7 @@
     "react-inspector"
   ],
   "scripts": {
+    "play:webpack": "pnpm run build && pnpm run --filter ./playground/webpack start",
     "play:vite": "pnpm run build && pnpm run --filter ./playground/vite dev",
     "play:rspack": "pnpm run build && pnpm run --filter ./playground/rspack dev",
     "dev": "rollup -c -w",
