@@ -1,4 +1,4 @@
-'use strict';
+
 
 const fs = require('fs');
 const path = require('path');
@@ -407,7 +407,7 @@ module.exports = function (webpackEnv) {
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
             {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
-              include: paths.appSrc,
+              exclude: /node_modules/,
               loader: require.resolve('babel-loader'),
               options: {
                 customize: require.resolve(
@@ -565,7 +565,7 @@ module.exports = function (webpackEnv) {
       ].filter(Boolean),
     },
     plugins: [
-      webpackPlugin({ enabled: true }),
+      webpackPlugin({ enabled: true, injectClientEntryFile: "src/index.tsx" }),
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
