@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import MagicString from "magic-string";
 import { parse as babelParse, traverse as babelTraverse } from "@babel/core";
+// @ts-ignore
+import transformTypescriptPlugin from "@babel/plugin-transform-typescript";
 import { CompileOptions, InjectClientOptions } from "../types";
 import path from "path";
 
@@ -58,7 +61,7 @@ export const injectInspectorInDom = (
     const ast = babelParse(code, {
       babelrc: false,
       comments: true,
-      plugins: [["@babel/plugin-transform-typescript", { isTSX: true, allExtensions: true }]],
+      plugins: [[transformTypescriptPlugin, { isTSX: true, allExtensions: true }]],
     });
 
     babelTraverse(ast, {

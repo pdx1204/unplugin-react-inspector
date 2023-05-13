@@ -7,13 +7,11 @@ import json from "@rollup/plugin-json";
 import del from "rollup-plugin-delete";
 import swc from "@qiuqfang/rollup-plugin-swc";
 import nodeResolve from "@rollup/plugin-node-resolve";
-// import copy from "rollup-plugin-copy";
 
 export default {
   input: "./src/index.ts",
   external: [
     "@babel/core",
-    "@babel/plugin-syntax-import-meta",
     "@babel/plugin-transform-typescript",
     "unplugin",
     "magic-string",
@@ -31,8 +29,5 @@ export default {
     commonjs(),
     json(),
     del({ targets: "dist/*" }),
-    // copy({
-    //   targets: [{ src: "src/client.js", dest: "dist" }],
-    // }),
   ],
 };
