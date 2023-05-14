@@ -27,17 +27,19 @@ export default createUnplugin<Options>((ops = DEFAULT_OPTIONS) => {
   return {
     name: "unplugin-react-inspector",
     enforce: "pre",
+    transformInclude(id) {
+      return id.endsWith(".jsx") || id.endsWith(".tsx");
+    },
     transform(code, id) {
       if (!id) return;
 
       // normalize path
       const filePath = normalizePath(id);
 
-      // check an filter
-      const isJsx = filePath.endsWith(".jsx") || filePath.endsWith(".tsx");
+      // filter
       const isInspectorOverlay = filterInspectorOverlay(filePath);
 
-      if (!isInspectorOverlay && isJsx && options.enabled)
+      if (!isInspectorOverlay && options.enabled)
         return compile(code, filePath, {
           port: defaultPort,
           enabled: options.enabled,
