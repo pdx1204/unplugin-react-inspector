@@ -23,24 +23,34 @@ const InspectorOverlay = memo((props) => {
 
   const [fileLocation, setFileLocation] = useState("");
   const [inspectorOverlayStyle, setInspectorOverlayStyle] = useState({});
+  const [inspectorInfoStyle, setInspectorInfoStyle] = useState({});
   const [enabledInspector, setEnabledInspector] = useState(props.enabled);
 
   useEffect(() => {
     document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setInspectorOverlayStyle({ display: "none" });
+    });
   }, []);
 
   const handleMouseMove = debounce((e) => {
     const { target } = e;
-    console.log(e, props.dataKey, target);
     const dataKeyValue = target.getAttribute(props.dataKey);
     if (!dataKeyValue) return;
     const rect = target.getBoundingClientRect();
+    const top = rect.top - 5;
+    const left = rect.left - 10;
     setInspectorOverlayStyle({
       width: rect.width,
       height: rect.height,
-      top: rect.top - 5,
-      left: rect.left - 10,
+      top,
+      left,
     });
+    if (top < 60) {
+      setInspectorInfoStyle({ transform: "translate(-50%, 100%)" });
+    } else {
+      setInspectorInfoStyle({});
+    }
     setFileLocation(dataKeyValue);
   });
 
@@ -59,7 +69,9 @@ const InspectorOverlay = memo((props) => {
           style={inspectorOverlayStyle}
           onClick={handleClick}
         >
-          <div className="inspector-info">{fileLocation}</div>
+          <div className="inspector-info" style={inspectorInfoStyle}>
+            {fileLocation}
+          </div>
         </div>
       )}
 
