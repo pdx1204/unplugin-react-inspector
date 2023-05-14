@@ -1,8 +1,9 @@
+import { filterInspectorOverlay } from "./../src/core/unplugin";
 import { describe, expect, test } from "@jest/globals";
 
-import { compile, filterInspectorOverlay } from "../src/core/compiler";
+import { compile } from "../src/core/compiler";
 
-describe("test compiler.ts", () => {
+describe("test core fn", () => {
   test("test compile fn", async () => {
     const result = await compile(
       "function hello() { console.log('hello'); return (<div>111111</div>); }",
