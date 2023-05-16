@@ -1,8 +1,8 @@
-import { Options } from "../types";
+import { UserOptions } from "../types";
 
 export const KEY_DATA = "data-inspector";
 
-export const DEFAULT_OPTIONS: Options = {
+export const DEFAULT_OPTIONS: UserOptions = {
   injectClientEntryFile: "src/main.tsx",
   enabled: false,
 };

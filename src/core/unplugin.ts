@@ -1,4 +1,4 @@
-import type { Options } from "./../types";
+import type { UserOptions } from "./../types";
 import { createUnplugin } from "unplugin";
 import { compile } from "./compiler";
 import { createServer } from "./server";
@@ -6,7 +6,7 @@ import { DEFAULT_OPTIONS } from "./constants";
 import getPort from "get-port";
 import { normalizePath } from "../utils";
 
-export default createUnplugin<Options>((ops = DEFAULT_OPTIONS) => {
+export default createUnplugin<UserOptions>((ops = DEFAULT_OPTIONS) => {
   if (typeof window === undefined) return { name: "nplugin-react-inspector" };
   if (process.env.NODE_ENV === "production") return { name: "unplugin-react-inspector" };
   let defaultPort: number;

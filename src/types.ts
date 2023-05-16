@@ -1,6 +1,6 @@
 import MagicString from "magic-string";
 
-export interface Options {
+export interface UserOptions {
   /**
    * Entry file path
    * @example
