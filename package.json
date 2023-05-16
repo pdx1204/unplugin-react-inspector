@@ -17,6 +17,7 @@
     "play:webpack": "pnpm run build && pnpm run --filter ./playground/webpack start",
     "play:vite": "pnpm run build && pnpm run --filter ./playground/vite dev",
     "play:rspack": "pnpm run build && pnpm run --filter ./playground/rspack dev",
+    "publish": "pnpm run build && pnpm publish --no-git-checks",
     "dev": "rollup -c -w",
     "build": "rollup -c && tsc -p ./tsconfig.json",
     "lint": "eslint . --fix",
