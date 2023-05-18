@@ -15,7 +15,7 @@ describe("test core fn", () => {
       }
     );
     expect(result).toBe(
-      `function hello() { console.log('hello'); return (<div data-inspector="src\\App.tsx:1:49">111111</div>); }`
+      `function hello() { console.log('hello'); return (<div data-inspector="src/App.tsx:1:49">111111</div>); }`
     );
   });
   test("test filterInspectorOverlay fn", async () => {
