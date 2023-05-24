@@ -10,14 +10,7 @@ import nodeResolve from "@rollup/plugin-node-resolve";
 
 export default {
   input: "./src/index.ts",
-  external: [
-    "@babel/core",
-    "@babel/plugin-transform-typescript",
-    "unplugin",
-    "magic-string",
-    "connect",
-    "launch-editor-middleware",
-  ],
+  external: [/node_modules/],
   output: [
     { file: "dist/index.cjs", format: "cjs" },
     { file: "dist/index.mjs", format: "es" },
