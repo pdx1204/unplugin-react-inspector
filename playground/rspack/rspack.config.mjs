@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const { rspackPlugin } = require("unplugin-react-inspector");
+import { rspackPlugin } from "unplugin-react-inspector";
 
-/**
- * @type {import('@rspack/cli').Configuration}
- */
-module.exports = {
-  context: __dirname,
+import { defineConfig } from "@rspack/cli";
+
+const config = defineConfig({
   entry: {
     main: "./src/main.tsx",
   },
@@ -28,4 +25,6 @@ module.exports = {
   devServer: {
     open: true,
   },
-};
+});
+
+export default config;

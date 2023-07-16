@@ -1,4 +1,4 @@
-const { webpackPlugin } = require("unplugin-react-inspector");
+import { webpackPlugin } from "unplugin-react-inspector";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -10,4 +10,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
