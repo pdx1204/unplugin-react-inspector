@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/display-name */
 import { memo, useEffect, useState } from "react";
+import { InspectorOptions } from "../types";
 
-function debounce(fn, wait = 50, immediate = true) {
-  let timer = null;
+function debounce(fn: { (e: MouseEvent): void }, wait = 50, immediate = true) {
+  let timer: NodeJS.Timeout | null = null;
 
-  return function (...args) {
+  return function (...args: [e: MouseEvent]) {
     if (timer) clearTimeout(timer);
 
     if (immediate && !timer) {
@@ -18,7 +20,7 @@ function debounce(fn, wait = 50, immediate = true) {
   };
 }
 
-const InspectorOverlay = memo((props) => {
+const InspectorOverlay = memo((props: InspectorOptions) => {
   const { document } = window;
 
   const [fileLocation, setFileLocation] = useState("");
@@ -33,14 +35,15 @@ const InspectorOverlay = memo((props) => {
     });
   }, []);
 
-  const handleMouseMove = debounce((e) => {
-    const { target } = e;
+  const handleMouseMove = debounce((e: MouseEvent) => {
+    const target = e.target as HTMLElement;
     const dataKeyValue = target.getAttribute(props.dataKey);
     if (!dataKeyValue) return;
     const rect = target.getBoundingClientRect();
     const top = rect.top - 5;
     const left = rect.left - 10;
     setInspectorOverlayStyle({
+      display: "block",
       width: rect.width,
       height: rect.height,
       top,

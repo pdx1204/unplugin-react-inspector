@@ -28,3 +28,9 @@ export type InjectClientOptions = Omit<CompileOptions, "code"> & {
   parseCode: MagicString;
   filePath: string;
 };
+
+export type InspectorOptions = {
+  dataKey: string;
+  port: number | undefined;
+  enabled: boolean | undefined;
+};

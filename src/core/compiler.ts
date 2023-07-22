@@ -28,7 +28,7 @@ export const injectClient = ({
         enabled,
       };
       parseCode.prepend(
-        `import { createClient } from "unplugin-react-inspector/client";\n createClient(${JSON.stringify(
+        `'use client';\nimport { createClient } from "unplugin-react-inspector/client";\ncreateClient(${JSON.stringify(
           options
         )});\n`
       );
@@ -43,7 +43,7 @@ export const injectClient = ({
     console.log("injectClientEntryFile", options);
 
     parseCode.prepend(
-      `import { createClient } from "unplugin-react-inspector/client";\n createClient(${JSON.stringify(
+      `'use client';\nimport { createClient } from "unplugin-react-inspector/client";\ncreateClient(${JSON.stringify(
         options
       )});\n`
     );
