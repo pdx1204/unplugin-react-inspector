@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "play:next": "pnpm run build && pnpm run --filter ./playground/next dev",
-    "play:webpack": "pnpm run build && pnpm run --filter ./playground/webpack start",
+    "play:webpack": "pnpm run build && pnpm run --filter ./playground/webpack dev",
     "play:vite": "pnpm run build && pnpm run --filter ./playground/vite dev",
     "play:rspack": "pnpm run build && pnpm run --filter ./playground/rspack dev",
     "publish": "pnpm run build && pnpm publish --no-git-checks",
