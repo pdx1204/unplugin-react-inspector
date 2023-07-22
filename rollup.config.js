@@ -18,6 +18,7 @@ export default [
     ],
     plugins: [swc(), nodeResolve({ extensions: [".ts", ".js"] }), commonjs(), json()],
   },
+  // fix: webpack 开发环境下需要打包问题
   {
     input: "./src/client/index.tsx",
     external: [/node_modules|react-dom|jsx-runtime/],
