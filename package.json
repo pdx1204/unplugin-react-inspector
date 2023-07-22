@@ -1,6 +1,6 @@
 {
   "name": "unplugin-react-inspector",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "A plugin to improve the happiness index of react development",
   "keywords": [
     "unplugin",
@@ -17,7 +17,7 @@
     "play:webpack": "pnpm run build && pnpm run --filter ./playground/webpack dev",
     "play:vite": "pnpm run build && pnpm run --filter ./playground/vite dev",
     "play:rspack": "pnpm run build && pnpm run --filter ./playground/rspack dev",
-    "publish": "pnpm run build && pnpm publish --no-git-checks",
+    "release": "pnpm run build && pnpm publish --no-git-checks",
     "dev": "node scripts/prepare.js && rollup -c -w",
     "build": "node scripts/prepare.js && rollup -c && tsc -p ./tsconfig.json",
     "lint": "eslint . --fix",
@@ -43,8 +43,7 @@
     }
   },
   "files": [
-    "dist",
-    "src/client/*"
+    "dist"
   ],
   "author": "Quincy Qiu",
   "license": "MIT",
