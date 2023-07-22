@@ -33,7 +33,7 @@
     "html-webpack-plugin": "^5.3.1",
     "postcss": "^8.2.8",
     "postcss-loader": "^7.0.0",
-    "postcss-preset-env": "^8.0.0",
+    "postcss-preset-env": "^9.0.0",
     "swc-loader": "^0.2.3",
     "typescript": "^5.0.0",
     "unplugin-react-inspector": "workspace:*",
