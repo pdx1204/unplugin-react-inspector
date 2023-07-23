@@ -1,17 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-// const path = require("path");
+const path = require("path");
 
-import path from "path";
+const HtmlWebpackPlugin = require("html-webpack-plugin"); // 配置html
 
-// const HtmlWebpackPlugin = require("html-webpack-plugin"); // 配置html
-import HtmlWebpackPlugin from "html-webpack-plugin";
+const { WebpackPluginPages } = require("@qiuqfang/webpack-plugin-pages");
+const { webpackPlugin } = require("unplugin-react-inspector");
 
-// const { WebpackPluginPages } = require("@qiuqfang/webpack-plugin-pages");
-import { WebpackPluginPages } from "@qiuqfang/webpack-plugin-pages";
-// const { webpackPlugin } = require("unplugin-react-inspector");
-import { webpackPlugin } from "unplugin-react-inspector";
-
-export default {
+module.exports = {
   entry: {
     app: {
       import: path.resolve(process.cwd(), "src/main.tsx"),

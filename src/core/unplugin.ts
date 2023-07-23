@@ -3,7 +3,7 @@ import { createUnplugin } from "unplugin";
 import { compile } from "./compiler";
 import { createServer } from "./server";
 import { DEFAULT_OPTIONS } from "./constants";
-import getPort from "get-port";
+import { getPort } from "@qiuqfang/get-port";
 import { normalizePath } from "../utils";
 
 export default createUnplugin<UserOptions>((ops = DEFAULT_OPTIONS) => {
