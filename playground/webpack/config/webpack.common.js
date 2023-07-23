@@ -4,7 +4,6 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // 配置html
 
 const { WebpackPluginPages } = require("@qiuqfang/webpack-plugin-pages");
-const { webpackPlugin } = require("unplugin-react-inspector");
 
 module.exports = {
   entry: {
@@ -46,6 +45,5 @@ module.exports = {
       chunks: ["app"], // 对于 entry 配置
     }),
     new WebpackPluginPages(),
-    webpackPlugin({ enabled: true, injectClientEntryFile: "src/main.tsx" }),
   ],
 };
