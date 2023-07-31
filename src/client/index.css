@@ -5,6 +5,8 @@ body {
   border-radius: 5px;
   padding: 5px 10px;
   position: fixed;
+  z-index: 1000;
+  box-sizing: content-box;
   background-color: rgba(255, 0, 0, 0.1);
   transition: all 0.5s;
   display: none;
@@ -25,6 +27,7 @@ body {
   position: fixed;
   top: 10px;
   right: 10px;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
