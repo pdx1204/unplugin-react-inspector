@@ -93,8 +93,6 @@ export async function compile(
   filePath: string,
   { port, enabled, injectClientEntryFile }: CompileOptions
 ) {
-  console.log("compile", filePath, injectClientEntryFile);
-
   let magicCode = new MagicString(code);
 
   magicCode = injectClient({
