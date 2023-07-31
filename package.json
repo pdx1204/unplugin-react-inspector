@@ -59,7 +59,7 @@
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@types/babel__core": "^7.20.0",
     "@types/connect": "^3.4.35",
-    "@types/jest": "^27.5.2",
+    "@types/jest": "^29.0.0",
     "@types/node": "^20.1.2",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
