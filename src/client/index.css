@@ -40,4 +40,5 @@ body {
 
 #inspector-overlay-checkbox-label input {
   cursor: pointer;
+  appearance: auto;
 }
