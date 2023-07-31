@@ -16,20 +16,7 @@ export default [
       { file: "dist/index.cjs", format: "cjs" },
       { file: "dist/index.mjs", format: "es" },
     ],
-    plugins: [
-      swc({
-        jsc: {
-          minify: {
-            compress: {
-              drop_console: true,
-            }, // equivalent to {}
-          },
-        },
-      }),
-      nodeResolve({ extensions: [".ts", ".js"] }),
-      commonjs(),
-      json(),
-    ],
+    plugins: [swc({}), nodeResolve({ extensions: [".ts", ".js"] }), commonjs(), json()],
   },
   // fix: webpack 开发环境下需要打包问题
   {

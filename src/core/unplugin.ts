@@ -7,8 +7,6 @@ import { getPort } from "@qiuqfang/get-port";
 import { normalizePath } from "../utils";
 
 export default createUnplugin<UserOptions>((ops = DEFAULT_OPTIONS) => {
-  if (typeof window === undefined) return { name: "nplugin-react-inspector" };
-  if (process.env.NODE_ENV === "production") return { name: "unplugin-react-inspector" };
   let defaultPort: number;
 
   const options = { ...DEFAULT_OPTIONS, ...ops };
