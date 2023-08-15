@@ -131,7 +131,7 @@ importers:
         version: 18.2.7
       autoprefixer:
         specifier: 10.4.15
-        version: 10.4.15(postcss@8.4.24)
+        version: 10.4.15(postcss@8.4.27)
       eslint:
         specifier: 8.47.0
         version: 8.47.0
@@ -142,8 +142,8 @@ importers:
         specifier: 13.4.8
         version: 13.4.8(@babel/core@7.21.8)(react-dom@18.2.0)(react@18.2.0)
       postcss:
-        specifier: 8.4.24
-        version: 8.4.24
+        specifier: 8.4.27
+        version: 8.4.27
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -3842,6 +3842,23 @@ packages:
       picocolors: 1.0.0
       postcss: 8.4.24
       postcss-value-parser: 4.2.0
+    dev: true
+
+  /autoprefixer@10.4.15(postcss@8.4.27):
+    resolution: {integrity: sha512-KCuPB8ZCIqFdA4HwKXsvz7j6gvSDNhDP7WnUjBleRkKjPdvCmHFuQ77ocavI8FT6NdvlBnE2UFr2H4Mycn8Vew==}
+    engines: {node: ^10 || ^12 || >=14}
+    hasBin: true
+    peerDependencies:
+      postcss: ^8.1.0
+    dependencies:
+      browserslist: 4.21.10
+      caniuse-lite: 1.0.30001520
+      fraction.js: 4.2.0
+      normalize-range: 0.1.2
+      picocolors: 1.0.0
+      postcss: 8.4.27
+      postcss-value-parser: 4.2.0
+    dev: false
 
   /available-typed-arrays@1.0.5:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
@@ -9524,6 +9541,7 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
+    dev: true
 
   /postcss@8.4.27:
     resolution: {integrity: sha512-gY/ACJtJPSmUFPDCHtX78+01fHa64FaU4zaaWfuh1MhGJISufJAH4cun6k/8fwsHYeK4UQmENQK+tRLCFJE8JQ==}
